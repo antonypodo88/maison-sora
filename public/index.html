@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maison Sora — Réservation de soins</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="demo-banner">Projet de démonstration — paiements en mode test Stripe, aucun vrai débit.</div>
+
+  <header class="hero">
+    <nav class="nav">
+      <span class="logo">Maison <em>Sora</em></span>
+      <a href="#booking" class="nav-link">Réserver</a>
+    </nav>
+    <div class="hero-content">
+      <p class="eyebrow">Soins bien-être · Zurich</p>
+      <h1>Prenez un moment<br />pour <em>vous</em>.</h1>
+      <p class="lead">Choisissez votre soin, votre créneau, et réservez en ligne en moins d'une minute avec un acompte de 30 %.</p>
+      <a href="#booking" class="btn btn-primary">Réserver un soin</a>
+    </div>
+  </header>
+
+  <main id="booking" class="booking">
+    <div id="alert" class="alert" hidden></div>
+
+    <section class="step">
+      <div class="step-head"><span class="step-num">1</span><h2>Choisissez votre soin</h2></div>
+      <div id="services" class="services"></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head"><span class="step-num">2</span><h2>Choisissez une date et un horaire</h2></div>
+      <label class="field">
+        <span>Date</span>
+        <input type="date" id="date" />
+      </label>
+      <p id="date-hint" class="hint">Ouvert du lundi au samedi.</p>
+      <div id="slots" class="slots"></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head"><span class="step-num">3</span><h2>Vos coordonnées</h2></div>
+      <form id="form" class="form">
+        <div class="fields">
+          <label class="field"><span>Nom complet</span><input id="name" required autocomplete="name" placeholder="Marie Dupont" /></label>
+          <label class="field"><span>E-mail</span><input id="email" type="email" required autocomplete="email" placeholder="marie@exemple.ch" /></label>
+        </div>
+
+        <aside class="summary" id="summary">
+          <h3>Récapitulatif</h3>
+          <dl>
+            <div><dt>Soin</dt><dd id="sum-service">—</dd></div>
+            <div><dt>Date</dt><dd id="sum-date">—</dd></div>
+            <div><dt>Heure</dt><dd id="sum-time">—</dd></div>
+            <div><dt>Prix total</dt><dd id="sum-price">—</dd></div>
+            <div class="total"><dt>Acompte à payer</dt><dd id="sum-deposit">—</dd></div>
+          </dl>
+          <button type="submit" id="pay" class="btn btn-primary btn-block" disabled>Payer l'acompte</button>
+          <p class="test-card">Carte de test : <code>4242 4242 4242 4242</code>, date future, CVC au choix.</p>
+        </aside>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Maison Sora est une entreprise fictive. Démo réalisée avec Node.js, Stripe et Supabase.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

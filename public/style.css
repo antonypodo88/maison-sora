@@ -1,0 +1,171 @@
+:root {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --ink: #2b2a27;
+  --muted: #6f6a62;
+  --line: #e7e1d7;
+  --sage: #5f7a61;
+  --sage-dark: #4a624c;
+  --sage-soft: #e8efe6;
+  --sand: #efe6d8;
+  --danger: #b4432f;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(43, 42, 39, 0.07);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+h1, h2, h3, .logo { font-family: "Fraunces", Georgia, serif; font-weight: 600; }
+em { font-style: italic; color: var(--sage); }
+
+.demo-banner {
+  background: var(--ink);
+  color: #f3efe8;
+  text-align: center;
+  font-size: 13px;
+  padding: 8px 16px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(95, 122, 97, 0.18), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(214, 190, 150, 0.35), transparent 50%),
+    var(--sand);
+  padding: 0 24px 90px;
+}
+.nav {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+}
+.logo { font-size: 24px; }
+.nav-link { color: var(--ink); text-decoration: none; font-weight: 500; }
+.nav-link:hover { color: var(--sage); }
+.hero-content { max-width: 1040px; margin: 60px auto 0; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--muted); margin: 0 0 12px; }
+.hero h1 { font-size: clamp(40px, 7vw, 68px); line-height: 1.05; margin: 0 0 20px; }
+.lead { max-width: 520px; font-size: 18px; color: var(--muted); margin: 0 0 32px; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font: 600 15px "Inter", sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, opacity .15s ease;
+}
+.btn-primary { background: var(--sage); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--sage-dark); transform: translateY(-1px); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-block { width: 100%; }
+
+/* ---------- Booking ---------- */
+.booking { max-width: 1040px; margin: -50px auto 0; padding: 0 24px 60px; position: relative; }
+.step {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  margin-bottom: 24px;
+}
+.step-head { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.step-head h2 { font-size: 24px; margin: 0; }
+.step-num {
+  width: 34px; height: 34px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--sage-soft); color: var(--sage-dark);
+  font-weight: 600;
+}
+
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.service {
+  text-align: left;
+  background: var(--bg);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 22px;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: border-color .15s, transform .15s, background .15s;
+}
+.service:hover { transform: translateY(-2px); }
+.service.selected { border-color: var(--sage); background: var(--sage-soft); }
+.service-emoji { font-size: 28px; }
+.service h3 { margin: 10px 0 6px; font-size: 20px; }
+.service p { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+.service-meta { display: flex; justify-content: space-between; font-size: 14px; }
+.service-meta strong { font-size: 18px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; font-size: 14px; font-weight: 500; }
+.field input {
+  font: 16px "Inter", sans-serif;
+  padding: 13px 15px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--ink);
+  max-width: 340px;
+}
+.field input:focus { outline: none; border-color: var(--sage); background: #fff; }
+.hint { color: var(--muted); font-size: 14px; margin: -6px 0 16px; }
+
+.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+.slot {
+  font: 500 15px "Inter", sans-serif;
+  padding: 12px 0;
+  border-radius: 12px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all .15s;
+}
+.slot:hover:not(:disabled) { border-color: var(--sage); }
+.slot.selected { background: var(--sage); border-color: var(--sage); color: #fff; }
+.slot:disabled { background: var(--bg); color: #b8b1a6; text-decoration: line-through; cursor: not-allowed; }
+
+.form { display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start; }
+.summary { background: var(--bg); border-radius: 14px; padding: 24px; }
+.summary h3 { margin: 0 0 14px; font-size: 20px; }
+.summary dl { margin: 0 0 20px; }
+.summary dl div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.summary dt { color: var(--muted); }
+.summary dd { margin: 0; font-weight: 500; text-align: right; }
+.summary .total { border-bottom: 0; padding-top: 12px; font-size: 16px; }
+.summary .total dd { color: var(--sage-dark); font-size: 20px; font-weight: 600; }
+.test-card { font-size: 12px; color: var(--muted); margin: 12px 0 0; text-align: center; }
+code { background: #fff; padding: 2px 6px; border-radius: 6px; }
+
+.alert { border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; background: #fbe9e5; color: var(--danger); font-weight: 500; }
+.alert.info { background: var(--sage-soft); color: var(--sage-dark); }
+
+.footer { text-align: center; color: var(--muted); font-size: 13px; padding: 30px 24px 50px; }
+
+/* ---------- Success page ---------- */
+.success-wrap { min-height: 80vh; display: grid; place-items: center; padding: 40px 24px; }
+.success-card { max-width: 480px; width: 100%; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 40px; text-align: center; }
+.success-icon { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; background: var(--sage-soft); color: var(--sage); display: grid; place-items: center; font-size: 30px; }
+.success-card h1 { margin: 0 0 10px; font-size: 32px; }
+.success-card .summary { text-align: left; margin: 24px 0; }
+
+@media (max-width: 760px) {
+  .form { grid-template-columns: 1fr; }
+  .step { padding: 24px 18px; }
+  .field input { max-width: none; }
+}

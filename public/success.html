@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Réservation confirmée — Maison Sora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="demo-banner">Projet de démonstration — paiements en mode test Stripe, aucun vrai débit.</div>
+  <div class="success-wrap">
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+      <h1>Merci !</h1>
+      <p id="message" class="lead" style="margin:0 auto">Vérification de votre paiement…</p>
+      <div id="details" class="summary" hidden>
+        <dl>
+          <div><dt>Soin</dt><dd id="d-service"></dd></div>
+          <div><dt>Date</dt><dd id="d-date"></dd></div>
+          <div><dt>Heure</dt><dd id="d-time"></dd></div>
+          <div class="total"><dt>Acompte payé</dt><dd id="d-deposit"></dd></div>
+        </dl>
+      </div>
+      <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+  </div>
+  <script>
+    const id = new URLSearchParams(location.search).get("session_id");
+    const $ = (x) => document.getElementById(x);
+    fetch(`/api/booking?session_id=${encodeURIComponent(id)}`)
+      .then((r) => r.json())
+      .then((b) => {
+        if (!b.paid) return ($("message").textContent = "Nous n'avons pas pu confirmer le paiement.");
+        $("message").textContent = `Votre rendez-vous est confirmé. À bientôt chez Maison Sora !`;
+        $("d-service").textContent = b.service;
+        $("d-date").textContent = new Date(`${b.date}T12:00:00`).toLocaleDateString("fr-CH", { weekday: "long", day: "numeric", month: "long" });
+        $("d-time").textContent = b.time;
+        $("d-deposit").textContent = `${b.deposit} CHF`;
+        $("details").hidden = false;
+      })
+      .catch(() => ($("message").textContent = "Réservation introuvable."));
+  </script>
+</body>
+</html>
